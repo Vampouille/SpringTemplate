@@ -8,14 +8,17 @@ import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Iterator;
+import java.util.List;
 
 @Controller
 @RequestMapping("/")
@@ -31,7 +34,7 @@ public class HelloController {
 	private JpaTransactionManager tm;
 
 
-	@RequestMapping(method = RequestMethod.GET)
+	@RequestMapping(value = "/printWelcome", method = RequestMethod.GET)
 	public String printWelcome(ModelMap model) {
 
 		Iterable<Person> res = repository.findAll();
@@ -61,4 +64,15 @@ public class HelloController {
 
 		return "hello";
 	}
+
+	@RequestMapping(value = "/testQuery/{search}", method = RequestMethod.GET)
+	@ResponseBody
+	public String printWelcome(@PathVariable String search) {
+
+		List<Person> res = this.repository.findByFuzzIs(search);
+		return res.toString();
+
+	}
+
+
 }

@@ -1,11 +1,13 @@
 package com.springapp.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 
 @Entity
+@NamedNativeQuery(name = "Person.findByFuzzIs",
+                  query = "SELECT * FROM Person WHERE name = :fuzz",
+                  resultClass = Person.class)
+
 public class Person {
 
     @Id
