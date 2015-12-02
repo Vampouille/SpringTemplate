@@ -2,6 +2,8 @@ package com.springapp.model;
 
 import javax.persistence.*;
 
+import org.hibernate.annotations.Type;
+
 
 @Entity
 @NamedNativeQuery(name = "Person.findByFuzzIs",
@@ -15,6 +17,17 @@ public class Person {
     private Long id;
     private String name;
     private String surname;
+//    Need to be created outside of JPA
+//    @Type(type = "com.springapp.util.PostGresArrayStringType")
+//    private String[] roles;
+//    
+//    public String[] getRoles() {
+//        return roles;
+//    }
+//
+//    public void setRoles(String[] roles) {
+//        this.roles = roles;
+//    }
 
     public Person() {
     }

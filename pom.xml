@@ -80,6 +80,18 @@
             <version>5.0.3.Final</version>
         </dependency>
 
+	    <dependency>
+	      <groupId>org.hibernate</groupId>
+	      <artifactId>hibernate-validator-annotation-processor</artifactId>
+	      <version>4.1.0.Final</version>
+	    </dependency>
+
+	    <dependency>
+	      <groupId>javax.validation</groupId>
+	      <artifactId>validation-api</artifactId>
+	      <version>1.0.0.GA</version>
+	      <classifier/>
+	    </dependency>
 
     </dependencies>
 
@@ -88,6 +100,7 @@
         <plugins>
             <plugin>
                 <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.3</version>
                 <configuration>
                     <source>1.6</source>
                     <target>1.6</target>
@@ -95,6 +108,7 @@
             </plugin>
             <plugin>
                 <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.19</version>
                 <configuration>
                     <includes>
                         <include>**/*Tests.java</include>
