@@ -10,10 +10,12 @@ import org.hibernate.annotations.Type;
                   query = "SELECT * FROM Person WHERE name = :fuzz",
                   resultClass = Person.class)
 
+
 public class Person {
 
     @Id
-    @GeneratedValue
+    @SequenceGenerator(name="person_seq", sequenceName="person_seq", initialValue=1, allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "person_seq")
     private Long id;
     private String name;
     private String surname;

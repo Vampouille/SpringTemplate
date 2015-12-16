@@ -5,7 +5,6 @@ import com.springapp.model.Person;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.jpa.JpaTransactionManager;
-import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -74,5 +73,15 @@ public class HelloController {
 
 	}
 
+	@RequestMapping(value = "/add/{name}/{surname}", method = RequestMethod.POST)
+	@ResponseBody
+	public String addPerson(@PathVariable String name, @PathVariable String surname){
 
+		Person person = new Person();
+		person.setName(name);
+		person.setSurname(surname);
+		this.repository.save(person);
+
+		return "User created with ID : " + person.getId();
+	}
 }
