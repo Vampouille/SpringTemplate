@@ -6,6 +6,7 @@ import org.hibernate.annotations.Type;
 
 
 @Entity
+@Table(schema = "public", name = "person")
 @NamedNativeQuery(name = "Person.findByFuzzIs",
                   query = "SELECT * FROM Person WHERE name = :fuzz",
                   resultClass = Person.class)
